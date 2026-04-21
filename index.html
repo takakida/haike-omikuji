@@ -4,249 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>平家物語 出家した者たち―祈りと苦悩</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500&family=Yuji+Syuku&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: #f5f0ea;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2rem 1rem;
+  background-color: #f7f4ee;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem;
 }
-
-#wrap {
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.4rem;
-}
-
+#wrap { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
 .top { text-align: center; }
-.top h1 {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: #1a0e05;
-  letter-spacing: .18em;
-  line-height: 1.7;
-}
-
+.top h1 { font-family: 'Yuji Syuku', serif; font-size: 20px; font-weight: 400; color: #1a0e05; letter-spacing: .18em; line-height: 1.7; }
 .shrine { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-
-.scroll-wrap { position: relative; width: 100px; height: 180px; }
-
+.scroll-wrap { position: relative; width: 90px; height: 200px; filter: drop-shadow(0 3px 10px rgba(0,0,0,0.13)); }
+/* 上下の軸棒 */
+.scroll-rod { position: absolute; left: -4px; right: -4px; height: 10px; border-radius: 5px; background: linear-gradient(to bottom, #c8a060, #8a6030, #c8a060); z-index: 2; }
+.scroll-rod.top { top: 0; }
+.scroll-rod.bottom { bottom: 0; }
+/* 和紙本体 */
 .scroll-bg {
-  position: absolute; inset: 0; border-radius: 6px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,80,80,0.45) 0%,
-    rgba(255,120,40,0.45) 8%,
-    rgba(255,170,40,0.45) 16%,
-    rgba(255,210,40,0.45) 22%,
-    rgba(240,240,60,0.45) 28%,
-    rgba(160,220,60,0.45) 34%,
-    rgba(60,200,100,0.45) 40%,
-    rgba(40,190,170,0.45) 46%,
-    rgba(40,160,220,0.45) 52%,
-    rgba(50,110,240,0.45) 58%,
-    rgba(80,70,230,0.45) 64%,
-    rgba(120,50,210,0.45) 70%,
-    rgba(170,40,200,0.45) 76%,
-    rgba(210,40,160,0.45) 82%,
-    rgba(240,50,110,0.45) 88%,
-    rgba(255,60,80,0.45) 100%
-  );
+  position: absolute; top: 8px; bottom: 8px; left: 0; right: 0;
+  background-color: #fdfaf3;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23w)' opacity='0.07'/%3E%3C/svg%3E"),
+    linear-gradient(to bottom, #f5efe0 0%, #fdfaf3 20%, #fdfaf3 80%, #f5efe0 100%);
+  border-left: 1px solid #ddd0a8; border-right: 1px solid #ddd0a8;
 }
-
-.scroll-frost {
-  position: absolute; inset: 0; border-radius: 6px;
-  background: rgba(255,255,255,0.28);
+/* 赤の飾り線 */
+.scroll-bg::before, .scroll-bg::after {
+  content: ''; position: absolute; left: 6px; right: 6px; height: 1px; background: #9a2020; opacity: .55;
 }
-
-.scroll-box {
-  position: absolute; inset: 0; border-radius: 6px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: transform .15s, opacity .15s;
-}
+.scroll-bg::before { top: 10px; }
+.scroll-bg::after  { bottom: 10px; }
+.scroll-box { position: absolute; top: 8px; bottom: 8px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s, opacity .15s; z-index: 1; }
 .scroll-box:hover { transform: scale(1.04); opacity: .85; }
 .scroll-box:active { transform: scale(.97); }
-
-.scroll-kanji {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 20px; font-weight: 900;
-  color: rgba(60,30,10,0.72);
-  writing-mode: vertical-rl;
-  letter-spacing: .3em;
-  line-height: 1.5;
-}
-
-.draw-btn {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 15px; font-weight: 700;
-  letter-spacing: .2em;
-  padding: 10px 30px;
-  color: #1a0e05;
-  background: transparent;
-  border: 0.5px solid #b8a090;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background .15s;
-}
+.scroll-box.used { cursor: default; opacity: .45; filter: grayscale(.7); }
+.scroll-box.used:hover { transform: none; opacity: .45; }
+.scroll-kanji { font-family: 'Yuji Syuku', serif; font-size: 22px; font-weight: 400; color: #1a0a05; writing-mode: vertical-rl; letter-spacing: .45em; line-height: 1.4; }
+.draw-btn { font-family: 'Yuji Syuku', serif; font-size: 12px; font-weight: 400; letter-spacing: .25em; padding: 8px 26px; color: #1a0e05; background: transparent; border: 0.5px solid #b8a090; border-radius: 8px; cursor: pointer; transition: background .15s; }
 .draw-btn:hover { background: rgba(0,0,0,0.05); }
 .draw-btn:disabled { opacity: .35; cursor: default; }
-
+.already-msg { font-family: 'Yuji Syuku', serif; font-size: 13px; color: #9a7a5a; letter-spacing: .1em; text-align: center; line-height: 1.8; padding: 8px 14px; background: #f5ede0; border: 0.5px solid #d8c8b8; border-radius: 8px; }
 .card {
   width: 100%;
-  background: #fffdf9;
-  border: 0.5px solid #ddd0c0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  animation: fadeUp .4s ease;
-  display: none;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  background-color: #fdfaf3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23w)' opacity='0.055'/%3E%3C/svg%3E");
+  border: 0.5px solid #d8c8a0; border-radius: 12px; padding: 1.5rem; animation: fadeUp .4s ease; display: none; box-shadow: 0 2px 14px rgba(0,0,0,0.08);
 }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.card-head {
-  display: flex; align-items: flex-start; gap: 14px;
-  margin-bottom: 1.2rem; padding-bottom: 1rem;
-  border-bottom: 0.5px solid #e8ddd0;
-}
-
-.avatar {
-  width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0;
-  background: #f0e8dc;
-  border: 0.5px solid #d8c8b8;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Noto Serif JP', serif;
-  font-size: 20px; font-weight: 900;
-  color: #7a5a3a;
-}
-
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.card-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 0.5px solid #e8ddd0; }
+.avatar { width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0; background: #f0e8dc; border: 0.5px solid #d8c8b8; display: flex; align-items: center; justify-content: center; font-family: 'Yuji Syuku', serif; font-size: 22px; font-weight: 400; color: #7a5a3a; }
 .head-info { flex: 1; min-width: 0; }
-.person-name {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 21px; font-weight: 700;
-  color: #1a0e05; letter-spacing: .08em;
-}
-.person-title {
-  font-size: 11px; color: #7a6050;
-  margin-top: 2px; letter-spacing: .05em;
-}
-
-.fortune-pill {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 18px; font-weight: 900;
-  letter-spacing: .12em;
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 0.5px solid;
-  white-space: nowrap; flex-shrink: 0;
-}
+.person-name { font-family: 'Yuji Syuku', serif; font-size: 21px; font-weight: 400; color: #1a0e05; letter-spacing: .08em; }
+.person-title { font-size: 11px; color: #7a6050; margin-top: 2px; letter-spacing: .05em; }
+.fortune-pill { font-family: 'Yuji Syuku', serif; font-size: 18px; font-weight: 400; letter-spacing: .12em; padding: 6px 14px; border-radius: 8px; border: 0.5px solid; white-space: nowrap; flex-shrink: 0; }
 .f-daikichi { color: #6b1515; background: #fdf0f0; border-color: #c87070; }
-.f-kichi    { color: #154a15; background: #f0f8f0; border-color: #60aa60; }
+.f-kichi { color: #154a15; background: #f0f8f0; border-color: #60aa60; }
 .f-chukichi { color: #1a3568; background: #eff5fc; border-color: #6080c8; }
 .f-shokichi { color: #503800; background: #fdf8e8; border-color: #c8a030; }
 .f-suekichi { color: #3a1a55; background: #f5f0fc; border-color: #9060c0; }
-.f-kyo      { color: #3a1a55; background: #f3ecfc; border-color: #8050b8; }
-.f-daikyo   { color: #2a2a2a; background: #f0f0f0; border-color: #909090; }
-
-.henshin-block {
-  background: #f5ede0;
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 1rem;
-}
-.henshin-label {
-  font-size: 10px; color: #9a7a5a;
-  letter-spacing: .12em; margin-bottom: 6px;
-}
-.henshin-compare {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center; gap: 8px;
-}
-.henshin-before, .henshin-after {
-  font-size: 12px; color: #7a6050; line-height: 1.6;
-}
-.henshin-before span, .henshin-after span {
-  display: block; font-size: 13px; font-weight: 500;
-  color: #1a0e05; margin-bottom: 2px;
-}
-.henshin-arrow {
-  font-size: 16px; color: #b8a090; font-weight: 300;
-}
-
-.quote-block {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 14px; color: #1a0e05;
-  line-height: 1.95; margin-bottom: 1rem;
-  padding: 10px 14px;
-  border-left: 2px solid #c8a080;
-  border-radius: 0 8px 8px 0;
-}
-
-.advice-block {
-  border-top: 0.5px solid #e8ddd0;
-  padding-top: 1rem;
-}
-.advice-label {
-  font-size: 10px; color: #9a7a5a;
-  letter-spacing: .12em; margin-bottom: 6px;
-}
-.advice-now {
-  font-size: 13px; color: #1a0e05;
-  line-height: 1.8; margin-bottom: .75rem;
-}
-.reiwa-label {
-  font-size: 11px; font-weight: 500;
-  color: #7a6050; margin-bottom: 4px;
-}
-.reiwa-note {
-  font-size: 13px; color: #7a6050;
-  line-height: 1.75;
-  padding: 8px 12px;
-  border-left: 2px solid #d8c8b8;
-  border-radius: 0 8px 8px 0;
-  background: #f5ede0;
-}
-
-.retry-btn {
-  margin-top: 1.2rem; width: 100%; padding: 9px;
-  font-size: 13px; letter-spacing: .1em;
-  color: #7a6050; background: transparent;
-  border: 0.5px solid #d8c8b8;
-  border-radius: 8px; cursor: pointer;
-  transition: background .15s;
-  font-family: 'Noto Serif JP', serif;
-}
-.retry-btn:hover { background: #f0e8dc; }
-
-footer {
-  font-size: 11px; color: #b8a090;
-  text-align: center; padding-bottom: 1rem;
-}
-
+.f-kyo { color: #3a1a55; background: #f3ecfc; border-color: #8050b8; }
+.f-daikyo { color: #2a2a2a; background: #f0f0f0; border-color: #909090; }
+.henshin-block { background: rgba(180,150,100,0.08); border-radius: 8px; padding: 12px 14px; margin-bottom: 1rem; border: 0.5px solid #e0d0b0; }
+.henshin-label { font-size: 10px; color: #9a7a5a; letter-spacing: .12em; margin-bottom: 6px; }
+.henshin-compare { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.henshin-before, .henshin-after { font-size: 12px; color: #7a6050; line-height: 1.6; }
+.henshin-before span, .henshin-after span { display: block; font-size: 13px; font-weight: 500; color: #1a0e05; margin-bottom: 2px; }
+.henshin-arrow { font-size: 16px; color: #b8a090; font-weight: 300; }
+.quote-block { font-family: 'Noto Serif JP', serif; font-size: 14px; color: #1a0e05; line-height: 1.95; margin-bottom: 1rem; padding: 10px 14px; border-left: 2px solid #9a2020; border-radius: 0 8px 8px 0; }
+.advice-block { border-top: 0.5px solid #e8ddd0; padding-top: 1rem; }
+.advice-label { font-size: 10px; color: #9a7a5a; letter-spacing: .12em; margin-bottom: 6px; }
+.advice-now { font-size: 13px; color: #1a0e05; line-height: 1.8; margin-bottom: .75rem; }
+.reiwa-label { font-size: 11px; font-weight: 500; color: #7a6050; margin-bottom: 4px; }
+.reiwa-note { font-size: 13px; color: #7a6050; line-height: 1.75; padding: 8px 12px; border-left: 2px solid #d8c8b8; border-radius: 0 8px 8px 0; background: rgba(180,150,100,0.07); }
+footer { font-size: 11px; color: #8a7060; text-align: center; padding-bottom: 1rem; font-family: 'Noto Serif JP', serif; letter-spacing: .08em; }
 .shake { animation: shake .55s ease; }
-@keyframes shake {
-  0%,100% { transform: rotate(0); }
-  15% { transform: rotate(-8deg) scale(1.05); }
-  35% { transform: rotate(8deg) scale(1.05); }
-  55% { transform: rotate(-4deg); }
-  75% { transform: rotate(4deg); }
-}
+@keyframes shake { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-8deg) scale(1.05); } 35% { transform: rotate(8deg) scale(1.05); } 55% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
 </style>
 </head>
 <body>
@@ -254,18 +89,20 @@ footer {
   <div class="top">
     <h1>平家物語<br>出家した者たち―祈りと苦悩</h1>
   </div>
-
   <div class="shrine" id="shrine">
     <div class="scroll-wrap">
+      <div class="scroll-rod top"></div>
       <div class="scroll-bg"></div>
-      <div class="scroll-frost"></div>
-      <div class="scroll-box" id="scrollBox" onclick="draw()">
-        <div class="scroll-kanji">変身おみくじ</div>
+      <div class="scroll-box" id="scrollBox">
+        <div class="scroll-kanji">おみくじ</div>
       </div>
+      <div class="scroll-rod bottom"></div>
     </div>
-    <button class="draw-btn" id="drawBtn" onclick="draw()">籤 を 引 く</button>
+    <button class="draw-btn" id="drawBtn">籤 を 引 く</button>
+    <div class="already-msg" id="alreadyMsg" style="display:none;">
+      本日はすでに籤を引かれました。<br>また明日お越しください。
+    </div>
   </div>
-
   <div class="card" id="card">
     <div class="card-head">
       <div class="avatar" id="cAvatar"></div>
@@ -275,7 +112,6 @@ footer {
       </div>
       <div class="fortune-pill" id="cFortune"></div>
     </div>
-
     <div class="henshin-block">
       <div class="henshin-label">変身の記録 ── after / before</div>
       <div class="henshin-compare">
@@ -284,113 +120,104 @@ footer {
         <div class="henshin-before" id="cBefore"></div>
       </div>
     </div>
-
     <div class="quote-block" id="cQuote"></div>
-
     <div class="advice-block">
       <div class="advice-label">今日の運勢</div>
       <div class="advice-now" id="cAdvice"></div>
       <div class="reiwa-label">令和で言えば：</div>
       <div class="reiwa-note" id="cReiwa"></div>
     </div>
-
-    <button class="retry-btn" onclick="reset()">もう一度引く ↺</button>
   </div>
-
-  <footer>企画展「平家物語 出家した者たち―祈りと苦悩」</footer>
+  <footer>飯田市川本喜八郎人形美術館</footer>
 </div>
-
 <script>
+const STORAGE_KEY = 'heike_omikuji_date';
+
 const people = [
-  {
-    name: "入道清盛", kanji: "清",
-    title: "太政大臣・平家の棟梁",
-    fortune: "大吉", fClass: "f-daikichi",
-    before: "<span>俗名：平清盛</span>武家の頂点に立つ権力者",
-    after:  "<span>法名：浄海</span>出家しても実権を手放さない",
-    quote: "栄華の絶頂で出家を選んだ男。しかしその変身は魂の転換ではなく、権力の衣替えだったのかもしれない。",
-    advice: "頂点にいる今こそ、真の変革を問われる日。外側だけを変えても、内側が変わらなければ意味はない。",
-    reiwa: "SNSで別アカウントを作りながら、中身は変えない人。名前を変えてもキャラは同じ。"
-  },
-  {
-    name: "西行", kanji: "行",
-    title: "武士・歌人・漂泊の僧",
-    fortune: "吉", fClass: "f-kichi",
-    before: "<span>俗名：佐藤義清</span>北面の武士・宮廷のエリート",
-    after:  "<span>法名：西行</span>日本中を旅する自由な詩人",
-    quote: "23歳で突然出家。捨てたはずの世俗を詠み続け、「花に染まる心」を一生追い求めた漂泊の魂。",
-    advice: "今日は、守るべきものを手放す勇気が問われる。不完全でいいから、本当の自分に近づく一歩を踏み出せ。",
-    reiwa: "エリートが突然会社を辞めてフォトグラファーになる。インスタに詩を投稿し続ける。"
-  },
-  {
-    name: "文覚", kanji: "覚",
-    title: "荒行の僧・源頼朝の盟友",
-    fortune: "中吉", fClass: "f-chukichi",
-    before: "<span>俗名：遠藤盛遠</span>衛府の武士",
-    after:  "<span>法名：文覚</span>荒行で肉体を極限まで鍛えた僧",
-    quote: "誤って想い人を殺めた絶望から出家。那智の滝で21日の荒行に挑んだ、狂気と聖性が隣り合う変身。",
-    advice: "傷ついた経験こそが変身の燃料になる。過去を悔やむより、その痛みを力に変える方法を見つけよ。",
-    reiwa: "大失恋の後、極限のトレーニングにはまって別人のように変わる。SNSで「再生の記録」を発信。"
-  },
-  {
-    name: "後白河法皇", kanji: "皇",
-    title: "院政の実力者・今様狂い",
-    fortune: "小吉", fClass: "f-shokichi",
-    before: "<span>後白河天皇</span>政治的に不安定な天皇",
-    after:  "<span>法皇</span>出家しても院政で実権を握り続ける",
-    quote: "今様（流行歌）に熱狂した文化オタク皇帝。出家は政治的な衣替えで、その策略は誰も読めなかった。",
-    advice: "今日は柔軟に立ち回る日。形を変えながらも本質を守る策略家の知恵を借りよ。変身は生存戦略にもなる。",
-    reiwa: "役職を変えながら組織に居座る人。外見はおとなしいが、実は一番したたか。今様＝TikTok廃人。"
-  },
-  {
-    name: "俊寛", kanji: "寛",
-    title: "鹿ケ谷の陰謀・孤島の僧",
-    fortune: "凶", fClass: "f-kyo",
-    before: "<span>俊寛僧都</span>高僧・平家打倒の陰謀者",
-    after:  "<span>鬼界ヶ島の流人</span>一人残された孤独な魂",
-    quote: "仲間は赦免されて帰った。自分だけが島に残された。その孤独は、出家した身でさえ癒せなかった。",
-    advice: "今日は思うようにいかないかもしれない。しかし孤独の中にこそ、本当の自分と向き合う時間がある。諦めるな。",
-    reiwa: "グループチャットから自分だけ抜け落とされた。既読無視が続く。それでも島から叫ぶ。"
-  },
-  {
-    name: "西光", kanji: "光",
-    title: "鹿ケ谷の陰謀・処刑された法師",
-    fortune: "大凶", fClass: "f-daikyo",
-    before: "<span>俗名：藤原師光</span>後白河院の近臣",
-    after:  "<span>法名：西光</span>清盛打倒を企て、捕縛・処刑",
-    quote: "最期まで清盛に対して罵倒をやめなかった男。出家の衣をまとっても、その怒りは消えなかった。",
-    advice: "今日は衝動的な行動に要注意。正義の怒りも、タイミングと方法を誤れば身を滅ぼす。慎重に。",
-    reiwa: "上司に正面から反論してSNSに告発投稿。バズったが炎上し、全てを失う。"
-  },
-  {
-    name: "祇王", kanji: "祇",
-    title: "白拍子・清盛に愛され、捨てられた女",
-    fortune: "末吉", fClass: "f-suekichi",
-    before: "<span>白拍子・祇王</span>清盛に寵愛された芸能者",
-    after:  "<span>尼・祇王</span>母と妹と仏御前と共に出家",
-    quote: "捨てられた悲しみの中で出家を選んだ祇王。しかしその先に、静かで深い連帯があった。",
-    advice: "今日は過去の痛みを手放す時。傷が癒えないなら、同じ傷を持つ人と共に生きる道もある。",
-    reiwa: "推しに飽きられて引退を決意。でも同じ痛みを持つ仲間と新しいコミュニティを作る。"
-  },
-  {
-    name: "仏御前", kanji: "仏",
-    title: "白拍子・清盛を見限り出家した女",
-    fortune: "吉", fClass: "f-kichi",
-    before: "<span>白拍子・仏御前</span>祇王を追い出した寵姫",
-    after:  "<span>尼・仏御前</span>権力の頂から自ら離脱し出家",
-    quote: "頂点にいながら、自分で全てを捨てた。それは最も自由な変身だったのかもしれない。",
-    advice: "今日は自分から手放す勇気を。与えられた栄光より、自分が選んだ道の方が、深く輝く。",
-    reiwa: "バズってフォロワー急増中なのに、突然全SNSを削除してリアルに戻る。最もかっこいい撤退。"
-  }
+  { name:"入道清盛", kanji:"清", title:"太政大臣・平家の棟梁", fortune:"大吉", fClass:"f-daikichi",
+    before:"<span>俗名：平清盛</span>武家の頂点に立つ権力者",
+    after:"<span>法名：浄海</span>出家しても実権を手放さない",
+    quote:"栄華の絶頂で出家を選んだ男。しかしその変身は魂の転換ではなく、権力の衣替えだったのかもしれない。",
+    advice:"頂点にいる今こそ、真の変革を問われる日。外側だけを変えても、内側が変わらなければ意味はない。",
+    reiwa:"SNSで別アカウントを作りながら、中身は変えない人。名前を変えてもキャラは同じ。" },
+  { name:"西行", kanji:"行", title:"武士・歌人・漂泊の僧", fortune:"吉", fClass:"f-kichi",
+    before:"<span>俗名：佐藤義清</span>北面の武士・宮廷のエリート",
+    after:"<span>法名：西行</span>日本中を旅する自由な詩人",
+    quote:"23歳で突然出家。捨てたはずの世俗を詠み続け、「花に染まる心」を一生追い求めた漂泊の魂。",
+    advice:"今日は、守るべきものを手放す勇気が問われる。不完全でいいから、本当の自分に近づく一歩を踏み出せ。",
+    reiwa:"エリートが突然会社を辞めてフォトグラファーになる。インスタに詩を投稿し続ける。" },
+  { name:"文覚", kanji:"覚", title:"荒行の僧・源頼朝の盟友", fortune:"中吉", fClass:"f-chukichi",
+    before:"<span>俗名：遠藤盛遠</span>衛府の武士",
+    after:"<span>法名：文覚</span>荒行で肉体を極限まで鍛えた僧",
+    quote:"誤って想い人を殺めた絶望から出家。那智の滝で21日の荒行に挑んだ、狂気と聖性が隣り合う変身。",
+    advice:"傷ついた経験こそが変身の燃料になる。過去を悔やむより、その痛みを力に変える方法を見つけよ。",
+    reiwa:"大失恋の後、極限のトレーニングにはまって別人のように変わる。SNSで「再生の記録」を発信。" },
+  { name:"後白河法皇", kanji:"皇", title:"院政の実力者・今様狂い", fortune:"小吉", fClass:"f-shokichi",
+    before:"<span>後白河天皇</span>政治的に不安定な天皇",
+    after:"<span>法皇</span>出家しても院政で実権を握り続ける",
+    quote:"今様（流行歌）に熱狂した文化オタク皇帝。出家は政治的な衣替えで、その策略は誰も読めなかった。",
+    advice:"今日は柔軟に立ち回る日。形を変えながらも本質を守る策略家の知恵を借りよ。変身は生存戦略にもなる。",
+    reiwa:"役職を変えながら組織に居座る人。外見はおとなしいが、実は一番したたか。今様＝TikTok廃人。" },
+  { name:"俊寛", kanji:"寛", title:"鹿ケ谷の陰謀・孤島の僧", fortune:"凶", fClass:"f-kyo",
+    before:"<span>俊寛僧都</span>高僧・平家打倒の陰謀者",
+    after:"<span>鬼界ヶ島の流人</span>一人残された孤独な魂",
+    quote:"仲間は赦免されて帰った。自分だけが島に残された。その孤独は、出家した身でさえ癒せなかった。",
+    advice:"今日は思うようにいかないかもしれない。しかし孤独の中にこそ、本当の自分と向き合う時間がある。諦めるな。",
+    reiwa:"グループチャットから自分だけ抜け落とされた。既読無視が続く。それでも島から叫ぶ。" },
+  { name:"西光", kanji:"光", title:"鹿ケ谷の陰謀・処刑された法師", fortune:"大凶", fClass:"f-daikyo",
+    before:"<span>俗名：藤原師光</span>後白河院の近臣",
+    after:"<span>法名：西光</span>清盛打倒を企て、捕縛・処刑",
+    quote:"最期まで清盛に対して罵倒をやめなかった男。出家の衣をまとっても、その怒りは消えなかった。",
+    advice:"今日は衝動的な行動に要注意。正義の怒りも、タイミングと方法を誤れば身を滅ぼす。慎重に。",
+    reiwa:"上司に正面から反論してSNSに告発投稿。バズったが炎上し、全てを失う。" },
+  { name:"祇王", kanji:"祇", title:"白拍子・清盛に愛され、捨てられた女", fortune:"末吉", fClass:"f-suekichi",
+    before:"<span>白拍子・祇王</span>清盛に寵愛された芸能者",
+    after:"<span>尼・祇王</span>母と妹と仏御前と共に出家",
+    quote:"捨てられた悲しみの中で出家を選んだ祇王。しかしその先に、静かで深い連帯があった。",
+    advice:"今日は過去の痛みを手放す時。傷が癒えないなら、同じ傷を持つ人と共に生きる道もある。",
+    reiwa:"推しに飽きられて引退を決意。でも同じ痛みを持つ仲間と新しいコミュニティを作る。" },
+  { name:"仏御前", kanji:"仏", title:"白拍子・清盛を見限り出家した女", fortune:"吉", fClass:"f-kichi",
+    before:"<span>白拍子・仏御前</span>祇王を追い出した寵姫",
+    after:"<span>尼・仏御前</span>権力の頂から自ら離脱し出家",
+    quote:"頂点にいながら、自分で全てを捨てた。それは最も自由な変身だったのかもしれない。",
+    advice:"今日は自分から手放す勇気を。与えられた栄光より、自分が選んだ道の方が、深く輝く。",
+    reiwa:"バズってフォロワー急増中なのに、突然全SNSを削除してリアルに戻る。最もかっこいい撤退。" }
 ];
 
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+}
+
+function hasDrawnToday() {
+  return localStorage.getItem(STORAGE_KEY) === todayStr();
+}
+
+function init() {
+  if (hasDrawnToday()) {
+    showAlreadyState();
+  } else {
+    document.getElementById('scrollBox').onclick = draw;
+    document.getElementById('drawBtn').onclick = draw;
+  }
+}
+
+function showAlreadyState() {
+  document.getElementById('scrollBox').classList.add('used');
+  document.getElementById('drawBtn').disabled = true;
+  document.getElementById('alreadyMsg').style.display = 'block';
+}
+
 function draw() {
+  if (hasDrawnToday()) return;
   const btn = document.getElementById('drawBtn');
   const box = document.getElementById('scrollBox');
   btn.disabled = true;
+  box.onclick = null;
   box.classList.add('shake');
   setTimeout(() => {
     box.classList.remove('shake');
+    localStorage.setItem(STORAGE_KEY, todayStr());
     render(people[Math.floor(Math.random() * people.length)]);
   }, 600);
 }
@@ -411,11 +238,7 @@ function render(p) {
   document.getElementById('cReiwa').textContent = p.reiwa;
 }
 
-function reset() {
-  document.getElementById('card').style.display = 'none';
-  document.getElementById('shrine').style.display = 'flex';
-  document.getElementById('drawBtn').disabled = false;
-}
+init();
 </script>
 </body>
 </html>
